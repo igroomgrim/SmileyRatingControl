@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Smiley" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,85 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0z-ye-oUR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <color key="backgroundColor" red="0.25882352941176467" green="0.27450980392156865" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="Nxo-JK-3fK"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="654-e8-pkC">
+                                <rect key="frame" x="0.0" y="559" width="375" height="28"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOLD &amp; SWIPE TO RATE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-D3-Da3">
+                                        <rect key="frame" x="121.5" y="7" width="133" height="14.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.50588235294117645" green="0.49019607843137253" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="cCp-D3-Da3" firstAttribute="centerY" secondItem="654-e8-pkC" secondAttribute="centerY" id="NfK-VU-GGC"/>
+                                    <constraint firstItem="cCp-D3-Da3" firstAttribute="centerX" secondItem="654-e8-pkC" secondAttribute="centerX" id="uUq-eB-fdc"/>
+                                    <constraint firstAttribute="height" constant="28" id="zmg-UA-Vt5"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YG-Xy-dYY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What were the best/worse things about this meeting " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4N-Jz-Jca">
+                                        <rect key="frame" x="32" y="8" width="311" height="64"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="P4N-Jz-Jca" secondAttribute="trailing" constant="24" id="dYe-Zg-tDU"/>
+                                    <constraint firstItem="P4N-Jz-Jca" firstAttribute="top" secondItem="1YG-Xy-dYY" secondAttribute="topMargin" id="h2j-pq-VHP"/>
+                                    <constraint firstAttribute="height" constant="80" id="j6G-u9-D43"/>
+                                    <constraint firstItem="P4N-Jz-Jca" firstAttribute="bottom" secondItem="1YG-Xy-dYY" secondAttribute="bottomMargin" id="skk-VR-vmO"/>
+                                    <constraint firstItem="P4N-Jz-Jca" firstAttribute="leading" secondItem="1YG-Xy-dYY" secondAttribute="leadingMargin" constant="24" id="uqu-2b-9aI"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazing offsite. Overall, I found the meeting helpful and informative." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mej-zB-kTi">
+                                <rect key="frame" x="40" y="152" width="294" height="37.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- ROHAN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufG-0X-ObW">
+                                <rect key="frame" x="40" y="197" width="53" height="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ufG-0X-ObW" firstAttribute="top" secondItem="mej-zB-kTi" secondAttribute="bottom" constant="8" id="ABy-U1-qXp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mej-zB-kTi" secondAttribute="trailing" constant="25" id="Aoa-lJ-Xzd"/>
+                            <constraint firstAttribute="trailing" secondItem="S0z-ye-oUR" secondAttribute="trailing" id="Caw-uu-Pre"/>
+                            <constraint firstItem="S0z-ye-oUR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="S8t-Dn-fdu"/>
+                            <constraint firstItem="S0z-ye-oUR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cid-sC-Kuc"/>
+                            <constraint firstItem="ufG-0X-ObW" firstAttribute="leading" secondItem="mej-zB-kTi" secondAttribute="leading" id="ksQ-8M-EpD"/>
+                            <constraint firstAttribute="trailing" secondItem="654-e8-pkC" secondAttribute="trailing" id="oMa-HI-4hF"/>
+                            <constraint firstItem="mej-zB-kTi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="rFX-hT-XhO"/>
+                            <constraint firstItem="1YG-Xy-dYY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sFl-za-Qj4"/>
+                            <constraint firstItem="mej-zB-kTi" firstAttribute="top" secondItem="1YG-Xy-dYY" secondAttribute="bottom" constant="8" id="tvJ-IZ-R9I"/>
+                            <constraint firstItem="654-e8-pkC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v23-j2-Ife"/>
+                            <constraint firstItem="1YG-Xy-dYY" firstAttribute="top" secondItem="S0z-ye-oUR" secondAttribute="bottom" id="wJh-Bp-XAS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="654-e8-pkC" secondAttribute="bottom" constant="80" id="xhs-lA-guO"/>
+                            <constraint firstAttribute="trailing" secondItem="1YG-Xy-dYY" secondAttribute="trailing" id="zFY-Pc-CuR"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-335.19999999999999" y="-174.06296851574214"/>
         </scene>
     </scenes>
 </document>
