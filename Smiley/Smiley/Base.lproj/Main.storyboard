@@ -77,6 +77,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fio-Uu-72N">
+                                <rect key="frame" x="16" y="629" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="showButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CRZ-o3-FLT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -84,7 +91,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="mej-zB-kTi" secondAttribute="trailing" constant="25" id="Aoa-lJ-Xzd"/>
                             <constraint firstAttribute="trailing" secondItem="S0z-ye-oUR" secondAttribute="trailing" id="Caw-uu-Pre"/>
                             <constraint firstItem="S0z-ye-oUR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="S8t-Dn-fdu"/>
+                            <constraint firstItem="fio-Uu-72N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="bid-BA-PgS"/>
                             <constraint firstItem="S0z-ye-oUR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cid-sC-Kuc"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fio-Uu-72N" secondAttribute="bottom" constant="8" id="hiL-pe-iUc"/>
                             <constraint firstItem="ufG-0X-ObW" firstAttribute="leading" secondItem="mej-zB-kTi" secondAttribute="leading" id="ksQ-8M-EpD"/>
                             <constraint firstAttribute="trailing" secondItem="654-e8-pkC" secondAttribute="trailing" id="oMa-HI-4hF"/>
                             <constraint firstItem="mej-zB-kTi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="rFX-hT-XhO"/>
