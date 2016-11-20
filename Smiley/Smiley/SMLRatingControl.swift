@@ -12,7 +12,10 @@ class SMLRatingControl: UIControl {
     
     fileprivate var startingPoint = CGPoint(x: 0, y: 0)
     fileprivate var currentPoint = CGPoint(x: 0, y: 0)
+    fileprivate var lastPoint = CGPoint(x: 0, y: 0)
     fileprivate var deltaY: CGFloat = 0.0
+    fileprivate var lastDeltaY: CGFloat = 0.0
+    fileprivate var factor: CGFloat = 0.0
     
     fileprivate var ovalLine: CAShapeLayer!
     fileprivate var smileyLine: CAShapeLayer!
@@ -68,15 +71,25 @@ class SMLRatingControl: UIControl {
         switch regonizer.state {
         case .began:
             startingPoint = regonizer.translation(in: self)
-            print("began : \(startingPoint)")
+            print("began : \(startingPoint) \(currentPoint) \(lastDeltaY)")
         case .changed:
             currentPoint = regonizer.translation(in: self)
             deltaY = currentPoint.y - startingPoint.y
-            print("deltaY : \(deltaY)")
-        case .cancelled:
-            print("cancelled")
-        case .ended:
-            print("ended")
+//            print("deltaY : \(deltaY)")
+            
+
+            smileyLine.path = drawSmileyPath(from: deltaY)
+            
+            
+            
+        case .cancelled, .ended:
+            lastPoint = regonizer.translation(in: self)
+            
+//            let delta = currentPoint.y - startingPoint.y
+            lastDeltaY = max(-45, min(45, deltaY))
+            
+            print("cancelled \(lastDeltaY)")
+            hide()
         default:
             return
         }
@@ -93,10 +106,67 @@ extension SMLRatingControl {
         return path.cgPath
     }
     
-    fileprivate func drawSmileyPath() -> CGPath {
+    fileprivate func drawSmileyPath(from delta: CGFloat) -> CGPath {
+        
+        // min = -45 : max = 45
+        factor = max(-45, min(45, delta + lastDeltaY))
+        
+        
+        let startingPoint = CGPoint(x: contentView.frame.width*0.20, y: contentView.frame.height*0.75)
+        let endPoint = CGPoint(x: contentView.frame.width*0.80, y: contentView.frame.height*0.75)
+        
+        let xx = lastDeltaY/300
+        let mdYFactor = 0.75+(factor/300)
+        
+        /*
+        let minYPoint = contentView.frame.height*0.60
+        let maxYPoint = contentView.frame.height*0.90
+        let middleYPoint = contentView.frame.height*0.75
+        */
+//        print("factor : \(factor) \(mdYFactor)")
+        
+        print("\(delta) \(factor) \(lastDeltaY) \(xx)")
+        
+        let middlePoint = CGPoint(x: contentView.frame.width/2, y: contentView.frame.height*mdYFactor)
+
+        
+        let midPathControlPoint = CGPoint(x: contentView.frame.width*0.30, y: contentView.frame.width*mdYFactor)
+        
+        
+        let endPathControlPoint = CGPoint(x: contentView.frame.width*0.70, y: contentView.frame.width*mdYFactor)
+        
+        // Draw Path
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: contentView.frame.width*0.25, y: contentView.frame.height*0.75))
-        path.addLine(to: CGPoint(x: contentView.frame.width*0.75, y: contentView.frame.height*0.75))
+        path.move(to: startingPoint)
+        
+        path.addCurve(to: middlePoint, controlPoint1: startingPoint, controlPoint2: midPathControlPoint)
+//
+        path.addCurve(to: endPoint, controlPoint1: endPathControlPoint, controlPoint2: endPoint)
+        
+//        path.addQuadCurve(to: endPoint, controlPoint: middlePoint)
+        
+        return path.cgPath
+    }
+    
+    fileprivate func drawSmileyPath() -> CGPath {
+        let startingPoint = CGPoint(x: contentView.frame.width*0.20, y: contentView.frame.height*0.75)
+        let endPoint = CGPoint(x: contentView.frame.width*0.80, y: contentView.frame.height*0.75)
+        
+        let middlePoint = CGPoint(x: contentView.frame.width/2, y: contentView.frame.height*0.75)
+        
+        let mdPathControlPoint = CGPoint(x: contentView.frame.width*0.30, y: contentView.frame.width*0.75)
+        
+        
+        let endPathControlPoint = CGPoint(x: contentView.frame.width*0.70, y: contentView.frame.width*0.75)
+        
+        // Draw Path
+        let path = UIBezierPath()
+        path.move(to: startingPoint)
+        
+        path.addCurve(to: middlePoint, controlPoint1: startingPoint, controlPoint2: mdPathControlPoint)
+        
+        path.addCurve(to: endPoint, controlPoint1: endPathControlPoint, controlPoint2: endPoint)
+        
         return path.cgPath
     }
 }
@@ -116,6 +186,6 @@ extension SMLRatingControl {
     }
     
     fileprivate func hide() {
-        
+//        print("hide \(lastPoint)")
     }
 }
