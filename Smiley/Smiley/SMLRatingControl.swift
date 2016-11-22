@@ -23,7 +23,7 @@ class SMLRatingControl: UIControl {
     fileprivate var contentView: UIView!
     
     fileprivate let ratingPointLabel = UILabel()
-    fileprivate let ratingPointDetail = UILabel()
+    fileprivate let ratingPointDetailLabel = UILabel()
     fileprivate let howToLabel = UILabel()
     
     var rating: Float = 0.0
@@ -44,9 +44,15 @@ class SMLRatingControl: UIControl {
         self.backgroundColor = UIColor.white
         
         contentView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width - 40, height: self.frame.width - 40))
-//        contentView.backgroundColor = UIColor.darkGray
-        contentView.center = self.center
         self.addSubview(contentView)
+    
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        contentView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40).isActive = true
+        contentView.heightAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        
         
         ovalLine = CAShapeLayer()
         ovalLine.path = drawOValLinePath()
@@ -55,6 +61,25 @@ class SMLRatingControl: UIControl {
         ovalLine.fillColor = nil
         contentView.layer.addSublayer(ovalLine)
         
+        
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panOnView(_:)))
+        self.addGestureRecognizer(panGesture)
+        
+        // Label
+        ratingPointLabel.text = "0.0"
+        
+        self.addSubview(howToLabel)
+        howToLabel.text = "Drag up and down to rate"
+        howToLabel.sizeToFit()
+        howToLabel.translatesAutoresizingMaskIntoConstraints = false
+        howToLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        howToLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -44).isActive = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
         smileyLine = CAShapeLayer()
         smileyLine.path = drawSmileyPath()
         smileyLine.fillColor = nil
@@ -62,9 +87,6 @@ class SMLRatingControl: UIControl {
         smileyLine.lineCap = kCALineCapRound
         smileyLine.strokeColor = UIColor(red:0.89, green:0.36, blue:0.38, alpha:1.0).cgColor
         contentView.layer.addSublayer(smileyLine)
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panOnView(_:)))
-        self.addGestureRecognizer(panGesture)
     }
     
     @objc fileprivate func panOnView(_ regonizer: UIPanGestureRecognizer) {
@@ -101,7 +123,7 @@ extension SMLRatingControl {
     fileprivate func drawOValLinePath() -> CGPath {
         print("center : \(self.center)")
 //        let path = UIBezierPath(ovalIn: CGRect(origin: self.center, size: CGSize(width: self.frame.width - 40, height: self.frame.width - 40)))
-        let width = self.frame.width - 40
+        let width = self.frame.width - 80
         let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: width, height: width))
         return path.cgPath
     }
