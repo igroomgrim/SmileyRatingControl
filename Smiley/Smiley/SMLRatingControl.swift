@@ -23,10 +23,17 @@ class SMLRatingControl: UIControl {
     fileprivate var contentView: UIView!
     
     fileprivate let ratingPointLabel = UILabel()
+    fileprivate let maxRatingPointLabel = UILabel()
     fileprivate let ratingPointDetailLabel = UILabel()
     fileprivate let howToLabel = UILabel()
     
-    var rating: Float = 0.0
+    var rating: Float = 0.0 {
+        didSet {
+            ratingPointLabel.text = String(format: "%.1f", rating)
+        }
+    }
+    
+    var maxRating: Float = 5.0
     
     init() {
         let frame = UIScreen.main.bounds
@@ -43,7 +50,32 @@ class SMLRatingControl: UIControl {
         self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.backgroundColor = UIColor.white
         
-        contentView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width - 40, height: self.frame.width - 40))
+        let margins = self.layoutMarginsGuide
+        
+        self.addSubview(ratingPointLabel)
+        ratingPointLabel.font = UIFont.systemFont(ofSize: 36)
+        ratingPointLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratingPointLabel.trailingAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
+        ratingPointLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 44).isActive = true
+        ratingPointLabel.textColor = UIColor.black
+        ratingPointLabel.text = String(format: "%.1f", rating)
+        
+        self.addSubview(maxRatingPointLabel)
+        maxRatingPointLabel.font = UIFont.systemFont(ofSize: 36)
+        maxRatingPointLabel.translatesAutoresizingMaskIntoConstraints = false
+        maxRatingPointLabel.leadingAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
+        maxRatingPointLabel.firstBaselineAnchor.constraint(equalTo: ratingPointLabel.firstBaselineAnchor).isActive = true
+        maxRatingPointLabel.textColor = UIColor.gray
+        maxRatingPointLabel.text = String(format: "/%.1f", maxRating)
+        
+        self.addSubview(ratingPointDetailLabel)
+        ratingPointDetailLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratingPointDetailLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
+        ratingPointDetailLabel.topAnchor.constraint(equalTo: ratingPointLabel.bottomAnchor, constant: 22).isActive = true
+        ratingPointDetailLabel.text = "Location was good"
+        
+        // Smilley
+        contentView = UIView()
         self.addSubview(contentView)
     
         contentView.translatesAutoresizingMaskIntoConstraints = false
